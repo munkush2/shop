@@ -21,7 +21,7 @@ class ShowController extends Controller
         $response = $products->map(function ($product) {
             return [
                 'id' => $product->id,
-                'name' => $product->Name,
+                'name' => $product->name,
                 'price' => $product->price,
                 'image' => $product->image,
                 'rating' => $product->rating,
