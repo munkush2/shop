@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
+            $table->string('brand');
+            $table->string('name');
             $table->integer('price');
             $table->string('image')->nullable();
             $table->unsignedTinyInteger('rating')->default(0);
