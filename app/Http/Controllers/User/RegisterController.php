@@ -29,6 +29,7 @@ class RegisterController extends Controller
                         'token_type' => 'Bearer',
                     ],
                     'message' => 'You have succesful registration',
+                    'user_status' => $user->user_status,
                     'success' => true,
                     'version' => 'v1'
                     

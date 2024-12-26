@@ -14,7 +14,7 @@ class LoginController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        dd($credentials);
+        
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -25,6 +25,7 @@ class LoginController extends Controller
                         'token_type' => 'Bearer',
                     ],
                 'message' => 'Login successful',
+                'user_status' => $user->user_status,
                 'success' => true,
                 'version' => 'v1'
                 ]);

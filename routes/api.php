@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\Shop\ShowController;
+use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\UpdateStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,13 @@ use App\Http\Controllers\Shop\ShowController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/shop', [ShowController::class, '__invoke']);
+    Route::prefix('admin')->group(function () {
+        Route::get('/users', [AdminPanelController::class, '__invoke']);
+        Route::post('/users/updatestatus', [UpdateStatusController::class, '__invoke']);
+    });
 });
 
 Route::post('/register/registration', [RegisterController::class, '__invoke']);
 Route::post('/login/authentification', [LoginController::class, '__invoke']);
-Route::get('/shop', [ShowController::class, '__invoke']);

@@ -11,7 +11,10 @@ class Shop extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'Name',
+        'name',
+        'brand',
+        'ram',
+        'cpu',
         'price',
         'image',
         'rating',

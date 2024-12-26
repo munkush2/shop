@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\MinPriceRule;
 use App\Rules\MaxPriceRule;
 
-class ShowRequest extends FormRequest
+class UpdateStatusUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class ShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255|exists:Shops,brand',
-            'cpu' => 'string|max:255|exists:Shops,cpu',
-            'ram' => 'string|max:255|exists:Shops,ram',
-            'price_min' => ['numeric', new MinPriceRule],
-            'price_max' => ['numeric', new MaxPriceRule],
+            'id' => 'numeric|',
+            'user_status' => 'string|max:10',
         ];
     }
 }
