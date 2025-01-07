@@ -10,8 +10,6 @@ use App\Http\Requests\ShowRequest;
 class ShowController extends Controller
 {
     public function __invoke(ShowRequest $request) {
-        $price_min = 1;
-        $price_max = 300000;
         if (!empty($request->all())) {
             $query = Shop::query();
             foreach ($request->all() as $key => $value) { 
@@ -31,7 +29,9 @@ class ShowController extends Controller
         } else {
             $products = Shop::paginate(30);
         }
-
+        $price_min = $products->min('price');
+        $price_max = $products->max('price');
+        
         $response = [
             'products' => $products->map(function ($product) {
         
@@ -48,6 +48,7 @@ class ShowController extends Controller
                 'price_max' => $price_max,
             ],
         ];
+        //sleep(1);
         return response()->json($response);
     }
 }
