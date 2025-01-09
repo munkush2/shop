@@ -31,12 +31,14 @@ class ShowController extends Controller
         }
         $price_min = $products->min('price');
         $price_max = $products->max('price');
-        
         $response = [
             'products' => $products->map(function ($product) {
         
                 return [
                     'id' => $product->id,
+                    'brand' =>$product->brand,
+                    'ram' =>$product->ram,
+                    'cpu' =>$product->cpu,
                     'name' => $product->name,
                     'price' => $product->price,
                     'image' => $product->image,
@@ -48,7 +50,6 @@ class ShowController extends Controller
                 'price_max' => $price_max,
             ],
         ];
-        //sleep(1);
         return response()->json($response);
     }
 }
